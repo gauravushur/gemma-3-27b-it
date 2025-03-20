@@ -1,5 +1,6 @@
 import os
 os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1"
+os.environ['HF_TOKEN'] = "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"
 from huggingface_hub import snapshot_download
 from pydantic import BaseModel, Field
 from typing import Optional
