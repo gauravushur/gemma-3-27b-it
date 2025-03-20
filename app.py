@@ -29,7 +29,7 @@ class ResponseObjects(BaseModel):
 class InferlessPythonModel:
     def initialize(self):
         model_id = "google/gemma-3-4b-it"
-        snapshot_download(repo_id=model_id, allow_patterns=["*.safetensors"],token=hf_token)
+        snapshot_download(repo_id=model_id, allow_patterns=["*.safetensors"], token=hf_token)
         self.model = Gemma3ForConditionalGeneration.from_pretrained(
             model_id, device_map="cuda"
         ).eval()
