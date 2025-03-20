@@ -1,7 +1,5 @@
 import os
-from dotenv import load_dotenv
-load_dotenv()
-hf_token = os.getenv('HF_TOKEN')
+
 os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1"
 from huggingface_hub import snapshot_download
 from pydantic import BaseModel, Field
@@ -29,7 +27,7 @@ class ResponseObjects(BaseModel):
 class InferlessPythonModel:
     def initialize(self):
         model_id = "google/gemma-3-4b-it"
-        snapshot_download(repo_id=model_id, allow_patterns=["*.safetensors"], token=hf_token)
+        snapshot_download(repo_id=model_id, allow_patterns=["*.safetensors"])
         self.model = Gemma3ForConditionalGeneration.from_pretrained(
             model_id, device_map="cuda"
         ).eval()
